@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/html5reset.css">
+		<link rel="stylesheet" href="css/chat_client.css">
+		<script src="js/schat.js"></script>
+		<script>
+			(function() {
+				var schat;
+				window.addEventListener('load', function() {
+					//initialize chat object with * target
+					schat = new sChat({
+							target: "*",
+						})
+				},
+				false )	
+
+				window.addEventListener('message', function(e) {
+					console.log(e);
+					//callback for received message
+					schat.receive(e.data, schat.options.content_id);
+				}, false)
+			}())  
+		</script>
+	</head>
+	<body>
+		<div id="content"></div>
+		<form id="form">
+		  	<span>Your nickname</span><input type="text" id="login"/>
+		  	<span>Your message</span><input type="text" id="msg"/>
+		  	<input class="button" type="submit" name="submit" value="Send"/>
+		  </label>
+		  
+		</form>
+	</body>
+</html>
