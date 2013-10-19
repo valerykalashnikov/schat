@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/html5reset.css">
+		<link rel="stylesheet" href="css/style.css">
+		<style>
+			/* Smartphones (portrait) */
+			@media only screen 
+			and (max-width : 320px) {
+				header {font-size: 12pt;}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			Simple chat
+		</header>
+		<script>
+			window.onload = function() {
+				function listener(event){
+					console.log(event);
+					var messages = sessionStorage.getItem('messages'),
+						data = event.data, win, origin ;
+					messages = (messages === null) ? messages = [] : messages = JSON.parse(messages);
+					messages.push(data);
+					messages = JSON.stringify(messages);
+					sessionStorage.setItem('messages', messages);
+					origin = JSON.parse(data).origin;
+					if (origin.indexOf('left.html') !== -1) {
+						win = document.getElementById('right').contentWindow;
+						win.postMessage( data, '*');
+					}
+					else {
+						win = document.getElementById('left').contentWindow;
+						win.postMessage( data, '*');	
+					}
+				}
+				if (window.addEventListener){
+				    window.addEventListener("message", listener,false);
+				} else {
+				    window.attachEvent("onmessage", listener);
+				}
+			}
+		</script>
+		<iframe src="left.html" scrolling="no" id="left"></iframe>
+		<iframe src="right.html" scrolling="no" id="right"></iframe>
+		<div style="position:absolute; bottom:0; font-size: 10px;">Smiles (GNU/GPL) was find on findicons.com created by Everaldo Coelho http://www.everaldo.com/ and compressed by tynipng.org. Thx :)</div>
+	</body>
+</html>
