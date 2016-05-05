@@ -7,13 +7,13 @@ sChat - lib for cliend side chat used HTML5 postMessage
 How to use
 -----
 
-initilize the schat object with options 
+Initilize the schat object with options:
 ```
 schat = new sChat({
 	target: "*"
 })
 ```
-and using callback for received messages.
+and use callback function to receive messages.
 For example:
 
 ```
@@ -22,8 +22,8 @@ window.addEventListener('message', function(e) {
 }, false)
 ```
 
-if your want some smiles, schat supports :), :(, :D, ;) emoticons out of the box.
-You have to style your smiles using classes with "emoticon" preffix like:
+Schat supports :), :(, :D, ;) emoticons out of the box.
+You have to style your smiles using classes with "emoticon" preffix:
 ```
 	.emoticon-grin { background-position: 0 0; }
 	.emoticon-smile { background-position: -18px 0; }
@@ -32,7 +32,7 @@ You have to style your smiles using classes with "emoticon" preffix like:
 	.emoticon-cheeky { background-position: -72px 0; } 
 ```
 
-if you want your our smiles your can use it, by initialize in this format: 
+if you want to implement your own smiles: 
 ```
 schat = new sChat({
 	target: "*",
@@ -46,4 +46,4 @@ schat = new sChat({
 		]
 })
 ```
-You can see a working example at http://valerykalashnikov.github.io/schat/
+You can check working example out at  [http://valerykalashnikov.github.io/schat]: http://valerykalashnikov.github.io/schat/ 
